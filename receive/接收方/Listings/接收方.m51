@@ -1,0 +1,193 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/28/2024  21:40:05  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEIL5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\receive.obj TO .\Objects\接收方 PRINT (.\Listings\接收方.m51)
+>>  RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\receive.obj (RECEIVE)
+  D:\KEIL5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\接收方 (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0011H     UNIT         ?DT?RECEIVE
+            IDATA   0019H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     001BH     UNIT         ?PR?UART_INIT?RECEIVE
+            CODE    001EH     0003H     UNIT         ?PR?_NIXIE_DISPLAY?RECEIVE
+                    0021H     0002H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     008CH     UNIT         ?C_C51STARTUP
+            CODE    00B2H     0016H     UNIT         ?PR?MAIN?RECEIVE
+            CODE    00C8H     0016H     UNIT         ?C_INITSEG
+            CODE    00DEH     000CH     UNIT         ?PR?UART_ROUTINE?RECEIVE
+            CODE    00EAH     0008H     UNIT         ?PR?_NIXIE_DATA_OUT?RECEIVE
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\接收方 (?C_STARTUP)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?RECEIVE
+  +--> ?C_INITSEG
+
+?PR?MAIN?RECEIVE
+  +--> ?PR?UART_INIT?RECEIVE
+  +--> ?PR?_NIXIE_DISPLAY?RECEIVE
+
+?PR?_NIXIE_DISPLAY?RECEIVE
+  +--> ?PR?_NIXIE_DATA_OUT?RECEIVE
+
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/28/2024  21:40:05  PAGE 2
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\接收方 (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0026H         SEGMENT       ?C_C51STARTUP
+  I:0019H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0029H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0026H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0026H         LINE#         133
+  C:0028H         LINE#         134
+  C:0029H         LINE#         135
+  C:002AH         LINE#         136
+  C:002CH         LINE#         185
+  C:002FH         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        RECEIVE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  C:00DEH         PUBLIC        UART_Routine
+  D:00A8H         PUBLIC        IE
+  B:00A8H.4       PUBLIC        ES
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  C:00B2H         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  D:0087H         PUBLIC        PCON
+  C:0003H         PUBLIC        UART_Init
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/28/2024  21:40:05  PAGE 3
+
+
+  C:001EH         PUBLIC        _Nixie_Display
+  B:00A8H.3       PUBLIC        ET1
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  B:0088H.6       PUBLIC        TR1
+  D:00C8H         PUBLIC        T2CON
+  D:0008H         PUBLIC        NixieTable
+  C:00EAH         PUBLIC        _Nixie_Data_Out
+  D:00D0H         PUBLIC        PSW
+  D:0018H         PUBLIC        key_num
+  -------         PROC          UART_INIT
+  C:0003H         LINE#         6
+  C:0003H         LINE#         7
+  C:0003H         LINE#         8
+  C:0006H         LINE#         9
+  C:0009H         LINE#         10
+  C:000CH         LINE#         11
+  C:000FH         LINE#         12
+  C:0012H         LINE#         13
+  C:0015H         LINE#         14
+  C:0017H         LINE#         15
+  C:0019H         LINE#         16
+  C:001BH         LINE#         17
+  C:001DH         LINE#         18
+  -------         ENDPROC       UART_INIT
+  -------         PROC          _NIXIE_DATA_OUT
+  D:0007H         SYMBOL        num
+  C:00EAH         LINE#         21
+  C:00EAH         LINE#         22
+  C:00EAH         LINE#         23
+  C:00F1H         LINE#         24
+  -------         ENDPROC       _NIXIE_DATA_OUT
+  -------         PROC          _NIXIE_DISPLAY
+  D:0007H         SYMBOL        num
+  C:001EH         LINE#         26
+  C:001EH         LINE#         27
+  C:001EH         LINE#         28
+  -------         ENDPROC       _NIXIE_DISPLAY
+  -------         PROC          MAIN
+  C:00B2H         LINE#         34
+  C:00B2H         LINE#         35
+  C:00B2H         LINE#         36
+  C:00B5H         LINE#         37
+  C:00B8H         LINE#         38
+  C:00B8H         LINE#         39
+  C:00B8H         LINE#         40
+  C:00BEH         LINE#         41
+  C:00BEH         LINE#         42
+  C:00C3H         LINE#         43
+  C:00C6H         LINE#         44
+  C:00C6H         LINE#         45
+  -------         ENDPROC       MAIN
+  -------         PROC          UART_ROUTINE
+  C:00DEH         LINE#         48
+  C:00DEH         LINE#         50
+  C:00E1H         LINE#         51
+  C:00E1H         LINE#         52
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/28/2024  21:40:05  PAGE 4
+
+
+  C:00E4H         LINE#         53
+  C:00E7H         LINE#         54
+  C:00E9H         LINE#         55
+  C:00E9H         LINE#         56
+  -------         ENDPROC       UART_ROUTINE
+  -------         ENDMOD        RECEIVE
+
+Program Size: data=26.0 xdata=0 code=240
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

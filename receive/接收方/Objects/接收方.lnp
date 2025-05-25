@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\receive.obj" 
+TO ".\Objects\接收方" 
+PRINT(".\Listings\接收方.m51") RAMSIZE(256) 

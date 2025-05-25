@@ -1,0 +1,100 @@
+C51 COMPILER V9.59.0.0   MAIN                                                              06/29/2024 21:22:35 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include "DHT11.h"
+   3          #include "LCD1602.h"
+   4          #include "send.h"
+   5          #include "adc0832.h"
+   6          #include "dianji.h"
+   7          #include "MatrixKey.h"
+   8          
+   9          unsigned char key_num = 0;
+  10          unsigned char display_flag = 7;
+  11          unsigned char display_mode = 17;
+  12          unsigned char key_val,key_old;
+  13          void main()
+  14          { 
+  15   1        UART_Init();
+  16   1        LCD_Init();
+  17   1        while(1)
+  18   1        {
+  19   2          key_val=MatrixKey();
+  20   2          key_num=key_val&(key_val^key_old);
+  21   2          key_old=key_val;
+  22   2          
+  23   2          if(key_num!=0){
+  24   3            key_num--;
+  25   3             LCD_Init();
+  26   3          if(key_num!=display_mode)
+  27   3          {
+  28   4            display_mode=key_num;
+  29   4            UART_SendByte(key_num);
+  30   4          }
+  31   3          else if(key_num==display_mode)
+  32   3          {
+  33   4            display_flag=key_num;
+  34   4            
+  35   4          }
+  36   3        }
+  37   2          
+  38   2            if (display_flag == 0)
+  39   2            {
+  40   3              DHT11_Display();
+  41   3            }
+  42   2            else if (display_flag == 1)
+  43   2            {
+  44   3              ADC0832_Display();
+  45   3            }
+  46   2            else if (display_flag == 1)
+  47   2            {
+  48   3              ADC0832_Display();
+  49   3            }
+  50   2            else if (display_flag == 2)
+  51   2            {
+  52   3              name();
+  53   3            }
+  54   2            else if (display_flag == 4)
+C51 COMPILER V9.59.0.0   MAIN                                                              06/29/2024 21:22:35 PAGE 2   
+
+  55   2            {
+  56   3              zz(3);
+  57   3            }
+  58   2            else if (display_flag == 5)
+  59   2            {
+  60   3              fz(3);
+  61   3            }
+  62   2            else if (display_flag == 6)
+  63   2            {
+  64   3              kz(3);
+  65   3            }
+  66   2            else if (display_flag == 7)
+  67   2            {
+  68   3              mz(3);
+  69   3            }
+  70   2      
+  71   2        }
+  72   1      
+  73   1      }
+*** WARNING C316 IN LINE 73 OF main.c: unterminated conditionals
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    151    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      5    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
